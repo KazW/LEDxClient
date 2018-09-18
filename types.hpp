@@ -6,6 +6,7 @@ struct LEDxPin
   const char *name;
   int pin;
   int ledCount;
+  Adafruit_NeoPixel *leds;
 };
 
 typedef struct LEDxConfig ledx_config;

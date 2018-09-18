@@ -1,12 +1,10 @@
-// LED Library
-#include <FastLED.h>
-
 // Project includes
 #include "globals.hpp"
 #include "state.hpp"
 #include "power.hpp"
 #include "networking.hpp"
 #include "apiRequests.hpp"
+#include "leds.hpp"
 
 void setup()
 {
@@ -21,6 +19,7 @@ void setup()
   findServer();
   setupRequests();
   refreshState();
+  setupLEDpins();
 }
 
 void loop()
