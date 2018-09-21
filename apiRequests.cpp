@@ -30,7 +30,13 @@ ledx_config parseConfigPayload(String payloadStr)
 
 void sleepAfterRetries(int retry)
 {
-  forceNapIf(retry > maxRetries);
+  if (retry > maxRetries)
+  {
+    Serial.print("Retried ");
+    Serial.print(maxRetries);
+    Serial.println(" times, sleeping now.");
+    forceNapIf(true);
+  }
 }
 
 ledx_config createConfig(int retry = 0)

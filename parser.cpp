@@ -1,6 +1,6 @@
 #include "parser.hpp"
 
-const size_t configBufferSize = JSON_ARRAY_SIZE(10) + JSON_OBJECT_SIZE(1) + 11 * JSON_OBJECT_SIZE(4) + 1720;
+const size_t configBufferSize = JSON_ARRAY_SIZE(10) + JSON_OBJECT_SIZE(1) + 11 * JSON_OBJECT_SIZE(4) + 1770;
 
 // Example payload
 /*
@@ -40,8 +40,9 @@ ledx_config parseConfig(char *configJson)
   JsonArray &pins = data["pins"];
 
   // Device config
-  config.name = data["name"];
+  data["name"].printTo(config.name);
   config.poweredOn = data["powered_on"];
+  config.lastUpdate = (long long)data["last_update"].as<long>();
 
   // Pin configuration
   config.pinCount = pins.size();
@@ -51,7 +52,7 @@ ledx_config parseConfig(char *configJson)
       break;
     ledx_pin pin;
 
-    pin.name = pins[i]["name"];
+    pins[i]["name"].printTo(pin.name);
     pin.pin = pins[i]["pin"];
     pin.ledCount = pins[i]["led_count"];
 

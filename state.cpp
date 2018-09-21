@@ -2,39 +2,60 @@
 
 ledx_config deviceConfig;
 
-const unsigned long configRefreshPeriod = 10 * 1000;
-unsigned long lastRefreshMillis = 0;
+const int RefreshPeriod = 10 * 1000;
+unsigned long lastConfigMillis = 0;
+unsigned long lastAnimationMillis = 0;
 
-unsigned long millisSinceRefresh()
+unsigned long millisSinceConfig()
 {
-  return millis() - lastRefreshMillis;
+  return millis() - lastConfigMillis;
 }
 
-void refreshAnimation()
+unsigned long millisSinceAnimation()
 {
-  Serial.println("Refreshing Animation...");
+  return millis() - lastAnimationMillis;
+}
+
+void refreshAnimation(bool force = false)
+{
+  if (!force && millisSinceAnimation() < RefreshPeriod)
+    return;
+  Serial.println("Refreshing animation...");
+  lastAnimationMillis = millis();
+}
+
+void refreshConfig()
+{
+  if (deviceConfig.configured && millisSinceConfig() < RefreshPeriod)
+    return;
+
+  Serial.println("Refreshing state...");
+  ledx_config newDeviceConfig = fetchConfig();
+
+  if (newDeviceConfig.pinCount == 0)
+  {
+    Serial.println("No pins configured, going to sleep.");
+    forceNapIf(true);
+  }
+  else if (!newDeviceConfig.poweredOn)
+  {
+    Serial.println("Configured to be off, going to sleep.");
+    forceNapIf(true);
+  }
+
+  if (newDeviceConfig.lastUpdate > deviceConfig.lastUpdate)
+  {
+    deviceConfig = newDeviceConfig;
+    deviceConfig.configured = true;
+    setupLEDpins();
+    refreshAnimation(true);
+  }
+
+  lastConfigMillis = millis();
 }
 
 void refreshState()
 {
-  if (deviceConfig.configured && millisSinceRefresh() < configRefreshPeriod)
-    return;
-
-  Serial.println("Refreshing state...");
-  deviceConfig = fetchConfig();
-  deviceConfig.configured = true;
-  lastRefreshMillis = millis();
-
-  if (deviceConfig.pinCount == 0)
-  {
-    Serial.println("No pins configured, forcing sleep.");
-    forceNapIf(true);
-  }
-  else if (!deviceConfig.poweredOn)
-  {
-    Serial.println("Configured to be off, forcing sleep.");
-    forceNapIf(true);
-  }
-
+  refreshConfig();
   refreshAnimation();
 }
