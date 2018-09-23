@@ -1,6 +1,6 @@
 #pragma once
 #include <Arduino.h>
 #include <ArduinoJson.h>
-#include "globals.hpp"
+#include "globals.h"
 
-ledx_config parseConfig(char*);
+ledx_config parseConfig(char *);

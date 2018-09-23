@@ -1,6 +1,6 @@
 #pragma once
 #include <Adafruit_NeoPixel.h>
-#include "types.hpp"
+#include "types.h"
 
 extern char ledxIp[];
 extern int ledxPort;

@@ -1,4 +1,4 @@
-#include "apiRequests.hpp"
+#include "apiRequests.h"
 
 HTTPClient http;
 const int maxRetries = 5;

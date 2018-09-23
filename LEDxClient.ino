@@ -1,9 +1,9 @@
 // Project includes
-#include "globals.hpp"
-#include "state.hpp"
-#include "power.hpp"
-#include "networking.hpp"
-#include "apiRequests.hpp"
+#include "globals.h"
+#include "state.h"
+#include "power.h"
+#include "networking.h"
+#include "apiRequests.h"
 
 void setup()
 {

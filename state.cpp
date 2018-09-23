@@ -1,4 +1,4 @@
-#include "state.hpp"
+#include "state.h"
 
 ledx_config deviceConfig;
 

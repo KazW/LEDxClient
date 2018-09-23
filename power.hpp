@@ -1,6 +1,6 @@
 #pragma once
 #include <Arduino.h>
-#include "globals.hpp"
+#include "globals.h"
 
 void setupPower();
 void forceNapIf(bool force);

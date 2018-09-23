@@ -1,4 +1,4 @@
-#include "networking.hpp"
+#include "networking.h"
 
 char ledxIp[24];
 int ledxPort;

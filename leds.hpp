@@ -1,6 +1,6 @@
 #pragma once
 
-#include "globals.hpp"
-#include "power.hpp"
+#include "globals.h" power.h
+#include "power.h"
 
 void setupLEDpins();

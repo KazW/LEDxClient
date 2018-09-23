@@ -1,4 +1,4 @@
-#include "serializer.hpp"
+#include "serializer.h"
 
 const size_t bufferSize = JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(2) + 124;
 

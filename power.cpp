@@ -1,4 +1,4 @@
-#include "power.hpp"
+#include "power.h"
 
 const int sleepyTime = 10 * 1000000;
 

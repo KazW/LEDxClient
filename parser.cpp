@@ -1,4 +1,4 @@
-#include "parser.hpp"
+#include "parser.h"
 
 const size_t configBufferSize = JSON_ARRAY_SIZE(10) + JSON_OBJECT_SIZE(1) + 11 * JSON_OBJECT_SIZE(4) + 1770;
 

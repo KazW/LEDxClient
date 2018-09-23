@@ -1,7 +1,7 @@
 #pragma once
-#include "globals.hpp"
-#include "power.hpp"
-#include "apiRequests.hpp"
-#include "leds.hpp"
+#include "globals.h"
+#include "power.h"
+#include "apiRequests.h"
+#include "leds.h"
 
-void refreshState();
+void refreshState(); apiRequests.h #include " leds.hinclude " power.h #include "apiRequests.h#include " leds.h
